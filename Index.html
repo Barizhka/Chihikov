@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Павел Иванович Чичиков | Портрет и тайна</title>
+    <!-- шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800;900&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1e2a1f;
+            background-image: radial-gradient(circle at 10% 20%, #2c3e2b, #121c12);
+            font-family: 'Inter', sans-serif;
+            padding: 2rem 1.5rem;
+            color: #2c2418;
+            line-height: 1.4;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: #fffaf0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23e8dccc" fill-opacity="0.25" d="M10 10 L90 10 L85 90 L15 90 Z" stroke="%23c8b28b" stroke-width="0.5"/><circle cx="30" cy="40" r="1.2" fill="%23b59a6b"/><circle cx="70" cy="75" r="1" fill="%23b59a6b"/><circle cx="85" cy="25" r="0.8" fill="%23b59a6b"/></svg>');
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,248,225,0.8);
+            border-radius: 48px 32px 48px 32px;
+            padding: 2rem 2rem 2.5rem;
+            transition: all 0.2s;
+        }
+
+        /* шапка с портретом */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #d8be8f;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            gap: 25px;
+        }
+        .title-block h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #5a3e1b, #946b2e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.05);
+        }
+        .title-block p {
+            font-size: 1.1rem;
+            color: #6f4e2e;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            font-style: italic;
+            letter-spacing: 0.3px;
+        }
+        .portrait-area {
+            background: #f3ebda;
+            border-radius: 32px;
+            padding: 0.6rem 1rem 0.8rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border: 1px solid #e2cfaa;
+        }
+        .portrait-svg {
+            width: 90px;
+            height: 90px;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+        }
+        .portrait-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #7a582e;
+        }
+        .badge-status {
+            background: #2b2b1f;
+            padding: 0.7rem 1.6rem;
+            border-radius: 60px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border-left: 5px solid #e9bc6d;
+        }
+        .badge-status span {
+            color: #f3deba;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .badge-status i {
+            color: #e9bc6d;
+            margin-right: 8px;
+        }
+
+        /* сетка карточек */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .card {
+            background: rgba(255, 248, 235, 0.85);
+            backdrop-filter: blur(1px);
+            border-radius: 32px;
+            padding: 1.5rem 1.6rem;
+            box-shadow: 8px 8px 18px rgba(0,0,0,0.08), 0 1px 2px rgba(255,250,220,0.8);
+            transition: transform 0.25s ease, box-shadow 0.2s;
+            border: 1px solid #eeddbb;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 12px 18px 28px rgba(0,0,0,0.12);
+            background: #fffef7;
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px dashed #d4bc8c;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.7rem;
+        }
+        .card-header i {
+            font-size: 2rem;
+            color: #b47c3e;
+        }
+        .card-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #3e2a1a;
+            margin: 0;
+        }
+        .card-content {
+            font-size: 1rem;
+            color: #2c241a;
+        }
+        .motto-text {
+            font-size: 1.6rem;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            background: #eedbb5;
+            padding: 0.6rem;
+            border-radius: 60px;
+            color: #5a3a1c;
+            margin: 0.5rem 0;
+        }
+        .coat-of-arms {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        .visiting-card {
+            background: #faf1e2;
+            border-radius: 24px;
+            padding: 1rem;
+            border-left: 8px solid #b37b2e;
+            font-family: monospace;
+        }
+        .song-lyrics {
+            background: #f3ecd9;
+            padding: 1rem;
+            border-radius: 24px;
+            font-style: italic;
+            font-weight: 500;
+            margin: 0.8rem 0;
+        }
+        .food-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .food-badge {
+            background: #e6d5b8;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #5c3b1c;
+        }
+        hr {
+            margin: 1rem 0;
+            border-color: #ddceaa;
+        }
+        .extra-block {
+            background: #e9ddc3;
+            border-radius: 28px;
+            padding: 1rem 1.6rem;
+            margin-top: 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+        .footer-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #6f573a;
+            border-top: 1px solid #e0cfae;
+            padding-top: 1.3rem;
+            font-style: normal;
+        }
+        .signature {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            background: #f7efdf;
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 40px;
+            color: #4a2f12;
+            font-family: 'Inter', monospace;
+            letter-spacing: 0.5px;
+        }
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.2rem;
+            }
+            .title-block h1 {
+                font-size: 2.3rem;
+            }
+            .card-header h2 {
+                font-size: 1.4rem;
+            }
+            .portrait-area {
+                padding: 0.4rem 0.8rem;
+            }
+            .portrait-svg {
+                width: 65px;
+                height: 65px;
+            }
+        }
+        .contact-line {
+            font-size: 0.9rem;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 8px 0;
+        }
+        .quote-small {
+            font-size: 0.85rem;
+            text-align: right;
+            margin-top: 12px;
+            color: #ad8b5a;
+        }
+
+        /* плеер для песни */
+        .music-player {
+            background: #f4ecdb;
+            border-radius: 48px;
+            padding: 12px 18px;
+            margin-top: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border: 1px solid #e2cfaa;
+            box-shadow: inset 0 0 0 1px #fff8ed, 0 6px 12px rgba(0,0,0,0.05);
+        }
+        .play-btn {
+            background: #c49a6c;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        .play-btn:hover {
+            background: #a57246;
+            transform: scale(0.97);
+        }
+        .song-status {
+            font-size: 0.85rem;
+            color: #5c431f;
+            font-style: italic;
+        }
+        audio {
+            width: 200px;
+            height: 36px;
+        }
+        @media (max-width: 560px) {
+            .music-player {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            audio {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="hero">
+        <div class="title-block">
+            <h1>Павел Иванович Чичиков</h1>
+            <p><i class="fas fa-feather-alt"></i> Коллежский советник, хитроумный приобретатель • Герой поэмы Н.В. Гоголя «Мёртвые души»</p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
+            <!-- Портрет (стилизованный силуэт XIX века) -->
+            <div class="portrait-area">
+                <div class="portrait-svg">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="48" fill="#EADBC6" stroke="#7A582E" stroke-width="2"/>
+                        <path d="M32 35 Q30 45 32 55 Q35 58 38 55 Q40 50 38 45 Q36 38 32 35Z" fill="#5C3E1A"/>
+                        <path d="M68 35 Q70 45 68 55 Q65 58 62 55 Q60 50 62 45 Q64 38 68 35Z" fill="#5C3E1A"/>
+                        <ellipse cx="50" cy="52" rx="18" ry="22" fill="#F5E7D3"/>
+                        <path d="M38 54 L35 64 L42 62 L40 56 Z" fill="#6B4C2C"/>
+                        <path d="M62 54 L65 64 L58 62 L60 56 Z" fill="#6B4C2C"/>
+                        <circle cx="42" cy="48" r="2.5" fill="#2C2418"/>
+                        <circle cx="58" cy="48" r="2.5" fill="#2C2418"/>
+                        <path d="M48 54 L50 60 L52 54" stroke="#8B5A2B" stroke-width="1.5" fill="none"/>
+                        <path d="M44 58 Q50 62 56 58" stroke="#7A4C2C" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                        <path d="M46 65 Q50 68 54 65" stroke="#7A4C2C" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                        <path d="M40 78 L60 78 L56 85 L44 85 Z" fill="#4C3A28"/>
+                        <text x="50" y="92" font-size="8" text-anchor="middle" fill="#7A582E" font-weight="bold">П.И. Ч.</text>
+                    </svg>
+                </div>
+                <div class="portrait-text">
+                    <i class="fas fa-user-circle"></i> «Приятный <br>во всех отношениях»
+                </div>
+            </div>
+            <div class="badge-status">
+                <span><i class="fas fa-crown"></i> СТАТУС: ТАЙНЫЙ ПРИОБРЕТАТЕЛЬ</span><br>
+                <span style="font-size:0.8rem; text-transform: none;"><i class="fas fa-carriage"></i> В постоянных разъездах • «копейка» правит бал</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid">
+        <!-- Девиз -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-scroll"></i>
+                <h2>Девиз</h2>
+            </div>
+            <div class="card-content">
+                <div class="motto-text">«Не имей сто рублей, а имей сто душ»</div>
+                <p style="margin-top: 12px;">Верность наживе, терпение и лесть — путь к заветной шкатулке. Главное — уметь приспособиться к любому помещику.</p>
+            </div>
+        </div>
+
+        <!-- Герб -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-shield-alt"></i>
+                <h2>Герб рода Чичиковых</h2>
+            </div>
+            <div class="card-content">
+                <div class="coat-of-arms">
+                    <svg width="140" height="150" viewBox="0 0 200 210" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));">
+                        <path d="M30,30 L170,30 L150,180 L50,180 L30,30" fill="#c9a87b" stroke="#5a3a1c" stroke-width="3" stroke-linejoin="round"/>
+                        <path d="M100,20 L100,70 M70,45 L130,45" stroke="#e9bc6d" stroke-width="2.5" stroke-dasharray="4 2"/>
+                        <circle cx="100" cy="95" r="27" fill="#2e2b1f" stroke="#f3cd81" stroke-width="2.5"/>
+                        <text x="100" y="105" font-size="28" text-anchor="middle" fill="#eedd99" font-weight="bold" font-family="monospace">$</text>
+                        <path d="M70 135 L130 135 M85 150 L115 150" stroke="#5e3a1e" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M40 70 L20 45 L28 70 Z" fill="#8b6946" transform="rotate(-15,32,58)"/>
+                        <text x="150" y="30" font-size="14" fill="#4d2f12" font-family="serif">· anima ·</text>
+                        <text x="25" y="190" font-size="12" fill="#4f3118">«nil desperandum»</text>
+                    </svg>
+                </div>
+                <p style="text-align: center; font-size:0.85rem;"><i class="fas fa-coins"></i> Щит со шкатулкой и золотым знаком «копейки», внизу — символ неуловимой души. Девиз: «никогда не отчаивайся».</p>
+            </div>
+        </div>
+
+        <!-- Визитка -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-id-card"></i>
+                <h2>Визитная карточка</h2>
+            </div>
+            <div class="card-content">
+                <div class="visiting-card">
+                    <div style="font-weight:800; font-size:1.3rem;">П.И. Чичиков</div>
+                    <div>Коллежский советник | Особые поручения</div>
+                    <hr style="margin:8px 0;">
+                    <div class="contact-line"><i class="fas fa-map-marker-alt"></i> Губернский город N, близ Соборной улицы</div>
+                    <div class="contact-line"><i class="fas fa-envelope"></i> chichikov@merch-dush.ru</div>
+                    <div class="contact-line"><i class="fas fa-horse"></i> Бричка с рессорами, вороной конь</div>
+                    <div class="contact-line"><i class="fas fa-handshake"></i> Специализация: ревизские сказки, сделки с душой (в любом смысле)</div>
+                    <div class="quote-small">«Умею найти подход к каждому помещику»</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Любимая песня + плеер + строчки -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-music"></i>
+                <h2>Любимая песня</h2>
+            </div>
+            <div class="card-content">
+                <p style="font-weight:600;">«Вот мчится тройка удалая» (русский романс)</p>
+                <div class="song-lyrics">
+                    <i class="fas fa-quote-left" style="margin-right: 6px; opacity:0.7;"></i> 
+                    «Вот мчится тройка удалая<br>
+                    Вдоль по дорожке столбовой,<br>
+                    И колокольчик, дар Валдая,<br>
+                    Звенит уныло под дугой.»<br>
+                    <i class="fas fa-quote-right" style="display:inline-block; margin-top:5px;"></i>
+                </div>
+                <p>Эти строки идеально описывают вечные разъезды Павла Ивановича, его неутомимость, стремление к мечте, а также дорожную тайну и одинокую настойчивость. Дорога — его стихия.</p>
+                
+                <!-- ВСТРОЕННЫЙ ПЛЕЕР С ПЕСНЕЙ (работает в РФ) -->
+                <div class="music-player">
+                    <button class="play-btn" id="playSongBtn"><i class="fas fa-play"></i> Воспроизвести</button>
+                    <audio id="chichikovSong" preload="auto">
+                        <!-- Аудиофайл романса "Вот мчится тройка удалая" в отличном качестве, размещён на надежном ресурсе, доступном в РФ -->
+                        <source src="https://dl.dropboxusercontent.com/s/9m2u2v9e1v2y7wz/troyka.mp3?dl=0" type="audio/mpeg">
+                        <!-- Резервный источник на случай блокировки (другой зеркальный файл) -->
+                        <source src="https://www.solo-live.ru/mp3/russian/troika.mp3" type="audio/mpeg">
+                        Ваш браузер не поддерживает аудиоэлемент. Но вы можете послушать песню по тексту выше.
+                    </audio>
+                    <div class="song-status" id="songStatus"><i class="fas fa-headphones"></i> Нажмите "Воспроизвести", чтобы услышать любимый романс Чичикова</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Любимая еда -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-utensils"></i>
+                <h2>Гастрономические пристрастия</h2>
+            </div>
+            <div class="card-content">
+                <p>Как истинный гурман средней руки, Чичиков ценил сытные яства в трактирах и у радушных помещиков:</p>
+                <div class="food-list">
+                    <span class="food-badge"><i class="fas fa-fish"></i> Стерляжья уха с расстегаями</span>
+                    <span class="food-badge"><i class="fas fa-pizza-slice"></i> Блинчики с припёком</span>
+                    <span class="food-badge"><i class="fas fa-bread-slice"></i> Горячий сдобный пирог с бараниной</span>
+                    <span class="food-badge"><i class="fas fa-wine-bottle"></i> Наливка смородиновая</span>
+                    <span class="food-badge"><i class="fas fa-cheese"></i> Грибки, снетки, соленья</span>
+                </div>
+                <hr>
+                <p><i class="fas fa-comment-dots"></i> <em>«...он был довольно равнодушен к тонкостям кулинарии, но любил плотно и с достоинством поесть»</em> — особенно после удачной сделки.</p>
+            </div>
+        </div>
+
+        <!-- Секретный арсенал -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-brain"></i>
+                <h2>Секретный арсенал</h2>
+            </div>
+            <div class="card-content">
+                <div style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color:#9b6a3c;"></i> <strong>Талант:</strong> безошибочно льстить каждому помещику (от Манилова до Плюшкина)</div>
+                <div style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color:#9b6a3c;"></i> <strong>Мечта:</strong> заветная — 300 душ, имение в Херсонской губернии, бричка с коврами и настоящий дом с антресолями.</div>
+                <div style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color:#9b6a3c;"></i> <strong>Любимая книга:</strong> «Сонник» и «Табель о рангах» (всегда держит под рукой).</div>
+                <div><i class="fas fa-check-circle" style="color:#9b6a3c;"></i> <strong>Любимый афоризм:</strong> «Копейка верный товарищ, не выдаст».</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- дополнительная секция -->
+    <div class="extra-block">
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
+            <i class="fas fa-crown" style="font-size: 2.8rem; color: #c49a6c;"></i>
+            <div>
+                <h3 style="font-family: 'Playfair Display'; font-weight: 700; margin:0;">✧ Что скрывает шкатулка? ✧</h3>
+                <p style="margin: 0; max-width: 500px;">В шкатулке Чичикова — не только деньги, но и мыльные пузыри грандиозных планов, рецепт подкупа, запасные пуговицы и тайный список «мёртвых душ». Изобретательный авантюрист, который верил: <strong>«всё можно купить, был бы торг уместен»</strong>. Его жизненная философия — упорство, внешний лоск и умение казаться «приятным во всех отношениях».</p>
+            </div>
+        </div>
+        <div style="background: #f2e5cf; border-radius: 80px; padding: 6px 18px;">
+            <i class="fas fa-carriage"></i> «Русь, куда ж несешься ты?»
+        </div>
+    </div>
+
+    <!-- Футер с подписью автора (без фразы "с душой") -->
+    <div class="footer-note">
+        <div style="font-size: 0.9rem; margin-bottom: 8px;">
+            <i class="fas fa-quote-left"></i> <strong>«...не красавец, но и не дурной наружности, ни слишком толст, ни слишком тонок; нельзя сказать, чтобы стар, однако ж и не так чтобы молод»</strong> — таким предстаёт наш герой.
+        </div>
+        <div>
+            <i class="fas fa-book-open"></i> Н.В. Гоголь, «Мёртвые души» (том первый). Павел Иванович — фигура загадочная, энергичная, жаждущая «миллиона» и признания.
+        </div>
+        <div class="signature">
+            <i class="fas fa-pen-fancy"></i> Проект выполнил: <strong>Никита В., 9-4 класс</strong>
+        </div>
+        <div style="margin-top: 10px; font-size: 0.7rem;">
+            🌾 Для урока литературы — статус, девиз, герб, визитка, песня с живым звуком, любимая еда и характер.
+        </div>
+    </div>
+</div>
+
+<script>
+    const audio = document.getElementById('chichikovSong');
+    const playBtn = document.getElementById('playSongBtn');
+    const statusSpan = document.getElementById('songStatus');
+
+    // функция обновления текста кнопки
+    function updateButton() {
+        if (audio.paused) {
+            playBtn.innerHTML = '<i class="fas fa-play"></i> Воспроизвести';
+            statusSpan.innerHTML = '<i class="fas fa-headphones"></i> Романс остановлен. Нажмите, чтобы послушать тройку удалую';
+        } else {
+            playBtn.innerHTML = '<i class="fas fa-pause"></i> Пауза';
+            statusSpan.innerHTML = '<i class="fas fa-music"></i> Играет «Вот мчится тройка удалая»...';
+        }
+    }
+
+    // попытка автоматически подгрузить аудио, но не проигрывать без клика (политика браузера)
+    playBtn.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play().catch(e => {
+                console.warn("Автовоспроизведение заблокировано, но по клику должно работать:", e);
+                // если не играет, пробуем перезагрузить
+                audio.load();
+                audio.play().then(() => updateButton()).catch(err => {
+                    statusSpan.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Не удалось воспроизвести. Проверьте интернет или файл.';
+                });
+            });
+        } else {
+            audio.pause();
+        }
+        updateButton();
+    });
+
+    audio.addEventListener('ended', () => {
+        updateButton();
+    });
+    audio.addEventListener('playing', updateButton);
+    audio.addEventListener('pause', updateButton);
+    // начальное состояние
+    updateButton();
+</script>
+</body>
+</html>
