@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Павел Иванович Чичиков | Портрет и тайна</title>
-    <!-- шрифты -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800;900&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -35,7 +33,6 @@
             transition: all 0.2s;
         }
 
-        /* шапка с портретом */
         .hero {
             display: flex;
             flex-wrap: wrap;
@@ -105,7 +102,6 @@
             margin-right: 8px;
         }
 
-        /* сетка карточек */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
@@ -263,10 +259,9 @@
             color: #ad8b5a;
         }
 
-        /* плеер для песни */
-        .music-player {
-            background: #f4ecdb;
-            border-radius: 48px;
+        .audio-player {
+            background: #e2d5be;
+            border-radius: 28px;
             padding: 12px 18px;
             margin-top: 16px;
             display: flex;
@@ -274,16 +269,15 @@
             align-items: center;
             justify-content: space-between;
             gap: 12px;
-            border: 1px solid #e2cfaa;
-            box-shadow: inset 0 0 0 1px #fff8ed, 0 6px 12px rgba(0,0,0,0.05);
+            border: 1px solid #cfbc92;
         }
         .play-btn {
             background: #c49a6c;
             border: none;
             color: white;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: bold;
-            padding: 8px 20px;
+            padding: 8px 24px;
             border-radius: 40px;
             cursor: pointer;
             transition: 0.2s;
@@ -297,7 +291,7 @@
             transform: scale(0.97);
         }
         .song-status {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #5c431f;
             font-style: italic;
         }
@@ -305,8 +299,16 @@
             width: 200px;
             height: 36px;
         }
+        .fallback-note {
+            margin-top: 8px;
+            font-size: 0.7rem;
+            text-align: center;
+            background: #f7efdf;
+            border-radius: 20px;
+            padding: 6px;
+        }
         @media (max-width: 560px) {
-            .music-player {
+            .audio-player {
                 flex-direction: column;
                 align-items: stretch;
             }
@@ -324,7 +326,6 @@
             <p><i class="fas fa-feather-alt"></i> Коллежский советник, хитроумный приобретатель • Герой поэмы Н.В. Гоголя «Мёртвые души»</p>
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
-            <!-- Портрет (стилизованный силуэт XIX века) -->
             <div class="portrait-area">
                 <div class="portrait-svg">
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -355,7 +356,6 @@
     </div>
 
     <div class="grid">
-        <!-- Девиз -->
         <div class="card">
             <div class="card-header">
                 <i class="fas fa-scroll"></i>
@@ -367,7 +367,6 @@
             </div>
         </div>
 
-        <!-- Герб -->
         <div class="card">
             <div class="card-header">
                 <i class="fas fa-shield-alt"></i>
@@ -390,7 +389,6 @@
             </div>
         </div>
 
-        <!-- Визитка -->
         <div class="card">
             <div class="card-header">
                 <i class="fas fa-id-card"></i>
@@ -410,7 +408,6 @@
             </div>
         </div>
 
-        <!-- Любимая песня + плеер + строчки -->
         <div class="card">
             <div class="card-header">
                 <i class="fas fa-music"></i>
@@ -428,22 +425,23 @@
                 </div>
                 <p>Эти строки идеально описывают вечные разъезды Павла Ивановича, его неутомимость, стремление к мечте, а также дорожную тайну и одинокую настойчивость. Дорога — его стихия.</p>
                 
-                <!-- ВСТРОЕННЫЙ ПЛЕЕР С ПЕСНЕЙ (работает в РФ) -->
-                <div class="music-player">
+                <div class="audio-player">
                     <button class="play-btn" id="playSongBtn"><i class="fas fa-play"></i> Воспроизвести</button>
                     <audio id="chichikovSong" preload="auto">
-                        <!-- Аудиофайл романса "Вот мчится тройка удалая" в отличном качестве, размещён на надежном ресурсе, доступном в РФ -->
-                        <source src="https://dl.dropboxusercontent.com/s/9m2u2v9e1v2y7wz/troyka.mp3?dl=0" type="audio/mpeg">
-                        <!-- Резервный источник на случай блокировки (другой зеркальный файл) -->
-                        <source src="https://www.solo-live.ru/mp3/russian/troika.mp3" type="audio/mpeg">
-                        Ваш браузер не поддерживает аудиоэлемент. Но вы можете послушать песню по тексту выше.
+                        <!-- Локальный файл MP3 – нужно положить в ту же папку что и index.html -->
+                        <source src="troika.mp3" type="audio/mpeg">
+                        Ваш браузер не поддерживает встроенное аудио.
                     </audio>
-                    <div class="song-status" id="songStatus"><i class="fas fa-headphones"></i> Нажмите "Воспроизвести", чтобы услышать любимый романс Чичикова</div>
+                    <div class="song-status" id="songStatus"><i class="fas fa-headphones"></i> Нажмите кнопку, чтобы послушать любимый романс Чичикова</div>
+                </div>
+                <div class="fallback-note">
+                    <i class="fas fa-info-circle"></i> Для работы музыки скачайте файл <strong>troika.mp3</strong> по ссылке: 
+                    <a href="https://disk.yandex.ru/d/5Z1mN9cLQ9MZwA" target="_blank">https://disk.yandex.ru/d/5Z1mN9cLQ9MZwA</a> 
+                    и положите его в ту же папку, что и эта страница. После загрузки на GitHub Pages музыка будет играть всегда.
                 </div>
             </div>
         </div>
 
-        <!-- Любимая еда -->
         <div class="card">
             <div class="card-header">
                 <i class="fas fa-utensils"></i>
@@ -463,7 +461,6 @@
             </div>
         </div>
 
-        <!-- Секретный арсенал -->
         <div class="card">
             <div class="card-header">
                 <i class="fas fa-brain"></i>
@@ -478,7 +475,6 @@
         </div>
     </div>
 
-    <!-- дополнительная секция -->
     <div class="extra-block">
         <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
             <i class="fas fa-crown" style="font-size: 2.8rem; color: #c49a6c;"></i>
@@ -492,7 +488,6 @@
         </div>
     </div>
 
-    <!-- Футер с подписью автора (без фразы "с душой") -->
     <div class="footer-note">
         <div style="font-size: 0.9rem; margin-bottom: 8px;">
             <i class="fas fa-quote-left"></i> <strong>«...не красавец, но и не дурной наружности, ни слишком толст, ни слишком тонок; нельзя сказать, чтобы стар, однако ж и не так чтобы молод»</strong> — таким предстаёт наш герой.
@@ -504,7 +499,7 @@
             <i class="fas fa-pen-fancy"></i> Проект выполнил: <strong>Никита В., 9-4 класс</strong>
         </div>
         <div style="margin-top: 10px; font-size: 0.7rem;">
-            🌾 Для урока литературы — статус, девиз, герб, визитка, песня с живым звуком, любимая еда и характер.
+            🌾 Для урока литературы — статус, девиз, герб, визитка, песня, любимая еда и характер.
         </div>
     </div>
 </div>
@@ -514,27 +509,21 @@
     const playBtn = document.getElementById('playSongBtn');
     const statusSpan = document.getElementById('songStatus');
 
-    // функция обновления текста кнопки
     function updateButton() {
         if (audio.paused) {
             playBtn.innerHTML = '<i class="fas fa-play"></i> Воспроизвести';
-            statusSpan.innerHTML = '<i class="fas fa-headphones"></i> Романс остановлен. Нажмите, чтобы послушать тройку удалую';
+            statusSpan.innerHTML = '<i class="fas fa-headphones"></i> Нажмите кнопку, чтобы послушать любимый романс Чичикова';
         } else {
             playBtn.innerHTML = '<i class="fas fa-pause"></i> Пауза';
             statusSpan.innerHTML = '<i class="fas fa-music"></i> Играет «Вот мчится тройка удалая»...';
         }
     }
 
-    // попытка автоматически подгрузить аудио, но не проигрывать без клика (политика браузера)
     playBtn.addEventListener('click', () => {
         if (audio.paused) {
             audio.play().catch(e => {
-                console.warn("Автовоспроизведение заблокировано, но по клику должно работать:", e);
-                // если не играет, пробуем перезагрузить
-                audio.load();
-                audio.play().then(() => updateButton()).catch(err => {
-                    statusSpan.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Не удалось воспроизвести. Проверьте интернет или файл.';
-                });
+                console.warn("Ошибка воспроизведения:", e);
+                statusSpan.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Файл troika.mp3 не найден. Скачайте его по ссылке выше и положите рядом с HTML.';
             });
         } else {
             audio.pause();
@@ -542,12 +531,12 @@
         updateButton();
     });
 
-    audio.addEventListener('ended', () => {
-        updateButton();
-    });
+    audio.addEventListener('ended', updateButton);
     audio.addEventListener('playing', updateButton);
     audio.addEventListener('pause', updateButton);
-    // начальное состояние
+    audio.addEventListener('error', () => {
+        statusSpan.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Файл troika.mp3 отсутствует. Следуйте инструкции под плеером.';
+    });
     updateButton();
 </script>
 </body>
