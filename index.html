@@ -299,14 +299,6 @@
             width: 200px;
             height: 36px;
         }
-        .fallback-note {
-            margin-top: 8px;
-            font-size: 0.7rem;
-            text-align: center;
-            background: #f7efdf;
-            border-radius: 20px;
-            padding: 6px;
-        }
         @media (max-width: 560px) {
             .audio-player {
                 flex-direction: column;
@@ -428,15 +420,10 @@
                 <div class="audio-player">
                     <button class="play-btn" id="playSongBtn"><i class="fas fa-play"></i> Воспроизвести</button>
                     <audio id="chichikovSong" preload="auto">
-                        <!-- Локальный файл MP3 – нужно положить в ту же папку что и index.html -->
                         <source src="troika.mp3" type="audio/mpeg">
                         Ваш браузер не поддерживает встроенное аудио.
                     </audio>
                     <div class="song-status" id="songStatus"><i class="fas fa-headphones"></i> Нажмите кнопку, чтобы послушать любимый романс Чичикова</div>
-                </div>
-                <div class="fallback-note">
-                    <i class="fas fa-info-circle"></i> Для работы музыки скачайте файл <strong>troika.mp3</strong>
-                    
                 </div>
             </div>
         </div>
@@ -522,7 +509,7 @@
         if (audio.paused) {
             audio.play().catch(e => {
                 console.warn("Ошибка воспроизведения:", e);
-                statusSpan.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Файл troika.mp3 не найден. Скачайте его по ссылке выше и положите рядом с HTML.';
+                statusSpan.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Не удалось воспроизвести. Файл troika.mp3 не найден.';
             });
         } else {
             audio.pause();
@@ -534,7 +521,7 @@
     audio.addEventListener('playing', updateButton);
     audio.addEventListener('pause', updateButton);
     audio.addEventListener('error', () => {
-        statusSpan.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Файл troika.mp3 отсутствует. Следуйте инструкции под плеером.';
+        statusSpan.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Файл troika.mp3 не найден.';
     });
     updateButton();
 </script>
